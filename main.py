@@ -1,12 +1,12 @@
 import pandas as pd
 
 df = pd.read_csv("autotest.csv")
+df.set_index('Make', inplace=True)
 df.rename({"Body-Style": "BodyStyle"}, axis=1, inplace=True)
 df.rename({"Highway-MPG": "HighwayMPG"}, axis=1, inplace=True)
 df.rename({"City-MPG": "CityMPG"}, axis=1, inplace=True)
 
 # Add in not case-sensitve command to true and false
-# Remove the first column of csv file
 qualities = []
 
 name = input('Enter your name: ')
@@ -19,21 +19,21 @@ if age1 == 'True' or age1 == 'true':
     experience = input("I have been driving for more than 3 years. ")
     if experience == 'True' or experience == 'true':
       qualities.append("Experienced")
-      driveType = input("I enjoy adventurous activities over scenic drives. ")
+      driveType = input("I enjoy adventurous activities over scenic drives. ") 
       if driveType == 'True' or driveType == 'true':
         qualities.append("Adventurous")
-        df2 = df[(df.Symboling <= 1) & (df.BodyStyle == "suv" ) & (df.HighwayMPG >= 30)]
+        df2 = df[(df.Symboling >= 0) & (df.BodyStyle == "suv" ) & (df.HighwayMPG >= 30)]
         print(df2)
       elif driveType == 'False' or driveType == 'false':
         qualities.append("Casual")
-        passenger = input("I drive often with my family. ")
+        passenger = input("I drive more often with my family than by myself. ")
         if passenger == 'True' or passenger == 'true':
           qualities.append("Family")
-          df2 = df[(df.Symboling <= 2) & (df.BodyStyle == "sedan" ) & (df.CityMPG >= 30)]
+          df2 = df[(df.Symboling > 0) & (df.BodyStyle == "sedan" ) & (df.CityMPG >= 30)]
           print(df2)
         elif passenger == 'False' or passenger == 'false':
           qualities.append("Single")
-          driveStyle = input("I like leisure rides. ")
+          driveStyle = input("I prefer leisure rides over practical rides. ")
           if driveStyle == 'True' or driveStyle == 'true':
             qualities.append("Leisure")
             df2 = df[(df.Symboling > 2) & (df.BodyStyle == "convertible" ) & (df.CityMPG >= 17) & (df.HighwayMPG >=25)]
@@ -51,14 +51,14 @@ if age1 == 'True' or age1 == 'true':
         print(df2)
       elif driveType == 'False' or driveType == 'false':
         qualities.append("Casual")
-        passenger = input("I drive often with my family. ")
+        passenger = input("I drive more often with my family than by myself. ")
         if passenger == 'True' or passenger == 'true':
           qualities.append("Family")
           df2 = df[(df.Symboling <= 0) & (df.BodyStyle =="sedan") & (df.CityMPG >= 30)]
           print(df2)
         elif passenger == 'False' or passenger == 'false':
           qualities.append("Single")
-          driveStyle = input("I like leisure rides. ")
+          driveStyle = input("I prefer leisure rides over practical rides. ")
           if driveStyle == 'True' or driveStyle == 'true':
             qualities.append("Leisure")
             df2 = df[(df.Symboling <= 2) & (df.BodyStyle == "convertible" ) & (df.CityMPG >= 20) & (df.HighwayMPG >=25)]
@@ -79,7 +79,7 @@ if age1 == 'True' or age1 == 'true':
         print(df2)
       elif driveType == 'False' or driveType == 'false':
         qualities.append("Casual")
-        passenger = input("I drive often with my family. ")
+        passenger = input("I drive more often with my family than by myself. ")
         if passenger == 'True' or passenger == 'true':
           qualities.append("Family")
           df2 = df[(df.Symboling >= 1) & (df.BodyStyle == 'sedan') & (df.CityMPG > 35) & (df.Price < 20000)]
@@ -104,7 +104,7 @@ if age1 == 'True' or age1 == 'true':
         print(df2)
       elif driveType == 'False' or driveType == 'false':
         qualities.append("Casual")
-        passenger = input("I drive often with my family. ")
+        passenger = input("I drive more often with my family than by myself. ")
         if passenger == 'True' or passenger == 'true':
           qualities.append("Family")
           df2 = df[(df.Symboling <= 0) & (df.BodyStyle == 'sedan') & (df.CityMPG > 35) & (df.Price < 20000)]
@@ -128,11 +128,11 @@ elif age1 == 'False' or age1 == 'false':
         driveType = input("I enjoy adventurous activities over scenic drives. ")
         if driveType == 'True' or driveType == 'true':
             qualities.append("Adventurous")
-            df2 = df[(df.Symboling >= 0) & (df.BodyStyle == "suv") & (df.HighwayMPG > 20) & (df.Price < 20000)]
+            df2 = df[(df.Symboling >= 0) & (df.BodyStyle == "suv") & (df.HighwayMPG > 25) & (df.Price < 10000)]
             print(df2) 
         elif driveType == 'False' or driveType == 'false':
             qualities.append("Casual")
-            passenger = input("I drive often with my family. ")
+            passenger = input("I drive more often with my family than by myself. ")
             if passenger == 'True' or passenger == 'true':
                 qualities.append("Family")
                 df2 = df[(df.Symboling < 1) & (df.BodyStyle == "sedan") & (df.Price <= 10000) & (df.CityMPG >= 30)]
@@ -153,24 +153,24 @@ elif age1 == 'False' or age1 == 'false':
         driveType = input("I enjoy adventurous activities over scenic drives. ")
         if driveType == 'True' or driveType == 'true':
             qualities.append("Adventurous")
-            df2 = df[(df.Symboling <= 0) & (df.BodyStyle == "suv") & (df.Price <= 15000) & (df.HighwayMPG >=30)]
+            df2 = df[(df.Symboling <= 0) & (df.BodyStyle == "suv") & (df.Price <= 10000) & (df.HighwayMPG > 30)]
             print(df2)
         elif driveType == 'False' or driveType == 'false':
             qualities.append("Casual")
-            passenger = input("I drive often with my family. ")
-        if passenger == 'True' or passenger == 'true':
-            qualities.append("Family")
-            df2 = df[(df.Symboling <= 0 ) & (df.BodyStyle == "sedan") & (df.Price <=15000) & (df.CityMPG >= 35)]
-            print(df2)
-        elif passenger == 'False' or passenger == 'false':
-            qualities.append("Single")
-            driveStyle = input("I like leisure rides. ")
-            if driveStyle == 'True' or driveStyle == 'true':
-                qualities.append("Leisure")
-                df2 = df[(df.Symboling <= 2) & (df.BodyStyle == "convertible") & (df.Price < 15000) & (df.CityMPG > 20)]
+            passenger = input("I drive more often with my family than by myself. ")
+            if passenger == 'True' or passenger == 'true':
+                qualities.append("Family")
+                df2 = df[(df.Symboling <= 0 ) & (df.BodyStyle == "sedan") & (df.Price <=15000) & (df.CityMPG >= 35)]
                 print(df2)
-            elif driveStyle == 'False' or driveStyle == 'false':
-                qualities.append("Practical")
-                df2 = df[(df.Symboling <= 1 ) & (df.BodyStyle == "hatchback") & (df.Price < 10000) & (df.CityMPG > 35)]
-                print(df2)
+            elif passenger == 'False' or passenger == 'false':
+                qualities.append("Single")
+                driveStyle = input("I prefer leisure rides over practical rides. ")
+                if driveStyle == 'True' or driveStyle == 'true':
+                    qualities.append("Leisure")
+                    df2 = df[(df.Symboling <= 2) & (df.BodyStyle == "convertible") & (df.Price < 15000) & (df.CityMPG > 20)]
+                    print(df2)
+                elif driveStyle == 'False' or driveStyle == 'false':
+                    qualities.append("Practical")
+                    df2 = df[(df.Symboling <= 1 ) & (df.BodyStyle == "hatchback") & (df.Price < 10000) & (df.CityMPG > 35)]
+                    print(df2)
 
